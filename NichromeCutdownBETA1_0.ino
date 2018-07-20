@@ -31,17 +31,19 @@ void setup() {
 }
 
 void loop() {
-
-  int p1 = digitalRead(IRIDIUM_0);
-  int p2 = digitalRead(IRIDIUM_1);
-  int p3 = digitalRead(IRIDIUM_2);
-
-  /* This while loop is here to prevent any accidental
-      misfires after the cutdown has finished.
-      This way, after the cutdown finishes, the arduino
-      won't be able to power the nichrome again
+  /* 
+  This while loop is here to prevent any accidental
+  misfires after the cutdown has finished.
+  This way, after the cutdown finishes, the arduino
+  won't be able to power the nichrome again
   */
   while (cutdownComplete == false) {
+
+    // This section reads in the pin states from the iridium modem
+    int p1 = digitalRead(IRIDIUM_0);
+    int p2 = digitalRead(IRIDIUM_1);
+    int p3 = digitalRead(IRIDIUM_2);
+
     Serial.print(Main.ShowHours());
     Serial.print(":");
     Serial.print(Main.ShowMinutes());
@@ -55,17 +57,17 @@ void loop() {
       cutdownComplete = burn();
       Main.StopTimer();
     }
-
-    /*Once the balloon has been in the air for a given amount
-       of time (currently 1.5 hours), the arduino will output
-       5v to the cutdown circuit, powering a length of
-       nichrome wire wrapped around the rope, melting the rope
-       in the process
-    */
     else if (Main.TimeCheck(0, 0, 0)) {
       Serial.print("Beginning Cutdown\n");
       cutdownComplete = burn();
     }
+    /*
+    Once the balloon has been in the air for a given amount
+    of time (currently 1.5 hours), the arduino will output
+    5v to the cutdown circuit, powering a length of
+    nichrome wire wrapped around the rope, melting the rope
+    in the process
+    */
   }
 }
 

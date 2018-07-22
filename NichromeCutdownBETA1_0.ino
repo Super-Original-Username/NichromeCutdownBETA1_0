@@ -22,7 +22,7 @@ void setup() {
   pinMode(IRIDIUM_1, INPUT);
   pinMode(IRIDIUM_2, INPUT);
   pinMode(LED_BUILTIN, OUTPUT);
-  Main.SetTimer(0,3,0);    //Initialize timer periods
+  Main.SetTimer(1,30,0);    //Initialize timer periods
   //BurnTime.SetTimer(0,0,10);
   //Main.SetTimer(0, 0, 10);
   BurnTime.SetTimer(0, 0, 10);

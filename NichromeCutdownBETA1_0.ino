@@ -35,7 +35,7 @@ void loop() {
   This while loop is here to prevent any accidental
   misfires after the cutdown has finished.
   This way, after the cutdown finishes, the arduino
-  won't be able to power the nichrome again
+  won't be able to power the cutdown again
   */
   while (cutdownComplete == false) {
 
